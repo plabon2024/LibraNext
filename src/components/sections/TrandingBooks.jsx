@@ -30,38 +30,41 @@ export default function TrandingBooks() {
   return (
     <div className="container mx-auto px-4 py-10 ">
       <h2 className="text-3xl font-bold mb-8 text-center ">Trending Books</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 ">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 place-items-center px-4 py-8">
         {books.map((book) => (
           <div
             key={book._id}
-            className="rounded-lg  
-            flex flex-col justify-center items-center overflow-hidden cursor-pointer "
+            className="flex flex-col items-center w-full max-w-xs rounded-lg overflow-hidden cursor-pointer transition-transform duration-300 hover:scale-105 p-4 hover:shadow-xl bg-primary/5 shadow-md"
           >
             {book.coverUrl ? (
-              <div className="space-y-4  bg-primary/5 shadow-2xl p-8 my-4">
-                <div className="relative w-[196px] h-[250px] mx-auto  py-4 ">
-                  <div className="absolute left-1/2 -translate-x-1/2  w-[76%] h-[88%] overflow-hidden rounded-sm mx-auto">
-                    <Image
-                      src={book.coverUrl}
-                      alt={book.title}
-                      fill
-                      className="object-contain w-full h-full"
-                      loading="lazy"
-                    />
-                  </div>
-                </div>
-                <div className=" flex flex-col flex-grow">
-                  <h3 className="text-lg font-semibold mb-2 line-clamp-2">
-                    {book.title}
-                  </h3>
-                  <p className="text-sm text-slate-400 flex-grow">
-                    {book.author}
-                  </p>
+              <>
+                {/* Book Cover container */}
+<div className="relative w-[196px] h-[250px]">
+                {/* <BookCoverSvg coverColor={book.coverColor} /> */}
+
+            
+                <div className="absolute z-10 top-[6%] left-[12%] w-[76%] h-[88%] overflow-hidden rounded-sm">
+                  <Image
+                    src={book.coverUrl}
+                    alt={book.title}
+                    fill
+                    className="object-contain w-full h-full"
+                    loading="lazy"
+                  />
                 </div>
               </div>
+
+                {/* Book Info */}
+                <div className="flex flex-col items-center text-center px-4 py-3 w-full">
+                  <h3 className="text-base font-semibold mb-1 line-clamp-2">
+                    {book.title}
+                  </h3>
+                  <p className="text-sm text-slate-500">{book.author}</p>
+                </div>
+              </>
             ) : (
-              <div className="h-60 bg-gray-200 flex items-center justify-center rounded-t-lg">
-                <span className="text-gray-400">No Image</span>
+              <div className="w-full h-[300px] bg-gray-200 flex items-center justify-center">
+                <span className="text-gray-400 text-sm">No Image</span>
               </div>
             )}
           </div>

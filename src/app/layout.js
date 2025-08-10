@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono,Lora } from "next/font/google";
+import { Geist, Geist_Mono, Lora } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 
@@ -12,12 +12,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 const lora = Lora({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  variable: '--font-lora',
-  display: 'swap',
-  style:"italic"
-})
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-lora",
+  display: "swap",
+  style: "italic",
+});
 
 export const metadata = {
   title: "Create Next App",
@@ -29,15 +29,12 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body
         className={`${geistSans.variable} ${lora.variable} ${geistMono.variable} antialiased`}
-      > 
-      <div className="bg-primary/10">
-
-                <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-                {children}  
-                </ThemeProvider>
-
-      </div>
-       
+      >
+        <div className="bg-primary/10">
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            {children}
+          </ThemeProvider>
+        </div>
       </body>
     </html>
   );

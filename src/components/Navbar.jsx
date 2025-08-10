@@ -29,7 +29,7 @@ import Logo from "./Logo";
 import ThemeToggle from "./ThemeToggle";
 export default function Navbar() {
   return (
-    <section className="py-4  sticky top-0 backdrop-blur-3xl">
+    <section className="py-4  sticky top-0 backdrop-blur-3xl z-50">
       <div className="container mx-auto">
         <nav className="flex items-center justify-between px-4">
           <span>
