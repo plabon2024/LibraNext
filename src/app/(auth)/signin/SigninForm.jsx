@@ -13,7 +13,7 @@ import Link from "next/link";
 
 export function SigninForm() {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 ">
       <Card>
         <CardHeader>
           <CardTitle className="text-center font-light text-2xl">
