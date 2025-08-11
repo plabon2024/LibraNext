@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono, Lora } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
+import NextAuthProvider from "@/providers/NextAuthProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,9 +32,11 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${lora.variable} ${geistMono.variable} antialiased`}
       >
         <div className="bg-primary/10">
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            {children}
-          </ThemeProvider>
+          <NextAuthProvider>
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+              {children}
+            </ThemeProvider>
+          </NextAuthProvider>
         </div>
       </body>
     </html>

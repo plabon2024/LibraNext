@@ -1,3 +1,4 @@
+"use client";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,8 +11,22 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
+import { useState } from "react";
+import { signIn } from "next-auth/react";
 
 export function SigninForm() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const result = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+    });
+    console.log(result);
+  }
   return (
     <div className="flex flex-col gap-6 ">
       <Card>
@@ -19,13 +34,13 @@ export function SigninForm() {
           <CardTitle className="text-center font-light text-2xl">
             Welcome back
           </CardTitle>
-          <CardDescription className='text-center'>
+          <CardDescription className="text-center">
             Enter your email below to login to your account
           </CardDescription>
         </CardHeader>
 
         <CardContent>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="flex flex-col gap-6">
               <div className="grid gap-3">
                 <Label htmlFor="email">Email</Label>

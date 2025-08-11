@@ -34,25 +34,21 @@ export default function TrandingBooks() {
         {books.map((book) => (
           <div
             key={book._id}
-            className="flex flex-col items-center w-full max-w-xs rounded-lg overflow-hidden cursor-pointer transition-transform duration-300 hover:scale-105 p-4 hover:shadow-xl bg-primary/5 shadow-md"
+            className="flex flex-col items-center w-full max-w-xs rounded-lg overflow-hidden cursor-pointer transition-transform duration-300 hover:scale-105 p-4 hover:shadow-xl bg-primary/10 shadow-md"
           >
             {book.coverUrl ? (
               <>
-                {/* Book Cover container */}
-<div className="relative w-[196px] h-[250px]">
-                {/* <BookCoverSvg coverColor={book.coverColor} /> */}
-
-            
-                <div className="absolute z-10 top-[6%] left-[12%] w-[76%] h-[88%] overflow-hidden rounded-sm">
-                  <Image
-                    src={book.coverUrl}
-                    alt={book.title}
-                    fill
-                    className="object-contain w-full h-full"
-                    loading="lazy"
-                  />
+                <div className="relative w-[196px] h-[250px]">
+                  <div className="absolute z-10 top-[6%] left-[12%] w-[76%] h-[88%] overflow-hidden rounded-sm">
+                    <Image
+                      src={book.coverUrl}
+                      alt={book.title}
+                      fill
+                      className="object-contain w-full h-full"
+                      loading="lazy"
+                    />
+                  </div>
                 </div>
-              </div>
 
                 {/* Book Info */}
                 <div className="flex flex-col items-center text-center px-4 py-3 w-full">
