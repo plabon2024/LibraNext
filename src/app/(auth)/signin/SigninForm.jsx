@@ -20,12 +20,13 @@ export function SigninForm() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+  console.log(email)
     const result = await signIn("credentials", {
       email,
       password,
       redirect: false,
     });
-    console.log(result);
+    console.log("login result",result);
   }
   return (
     <div className="flex flex-col gap-6 ">
@@ -48,6 +49,7 @@ export function SigninForm() {
                   id="email"
                   type="email"
                   placeholder="m@example.com"
+                   onChange={(e) => setEmail(e.target.value)}
                   required
                 />
               </div>
@@ -61,7 +63,7 @@ export function SigninForm() {
                     Forgot your password?
                   </a>
                 </div>
-                <Input id="password" type="password" required />
+                <Input id="password" type="password"   onChange={(e) => setPassword(e.target.value)} required />
               </div>
               <div className="flex flex-col gap-3">
                 <Button type="submit" className="w-full">

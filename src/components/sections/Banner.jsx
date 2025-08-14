@@ -13,7 +13,7 @@ export default function Banner() {
         There is no friend as loyal as a book
       </h1>
     </div>
-    <p className="max-w-2xl opacity-30 font-light">
+    <p className="max-w-2xl opacity-60 font-light">
   Books are the gateway to knowledge, imagination, and growth. They inspire us to explore new ideas, deepen our understanding, and connect with the world around us. Whether for learning or leisure, every page turns into an opportunity to enrich your mind and soul.
     </p>
     <Button className="w-fit px-6 py-3 bg-primary text-white rounded hover:bg-primary-dark transition">

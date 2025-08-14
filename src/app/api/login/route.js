@@ -5,6 +5,7 @@ export async function POST(req) {
   try {
     const { email, password } = await req.json();
 
+    // Basic validation
     if (!email || !password) {
       return new Response(
         JSON.stringify({ error: "Email and password are required" }),
@@ -22,7 +23,7 @@ export async function POST(req) {
       );
     }
 
-    // Compare password
+    // Check password
     const isPasswordValid = await bcrypt.compare(
       password,
       existingUser.password
@@ -35,7 +36,7 @@ export async function POST(req) {
       );
     }
 
-    // Remove password before returning
+    // Remove password before returning user info
     const { password: _, ...userWithoutPassword } = existingUser;
 
     return new Response(JSON.stringify(userWithoutPassword), { status: 200 });
