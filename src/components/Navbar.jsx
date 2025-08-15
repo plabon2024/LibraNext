@@ -27,7 +27,11 @@ import {
 import Link from "next/link";
 import Logo from "./Logo";
 import ThemeToggle from "./ThemeToggle";
+import { useSession } from "next-auth/react";
 export default function Navbar() {
+  const { data, status } = useSession();
+  console.log("nav 13:", status);
+  console.log("nav 13:", data);
   return (
     <section className="py-4  sticky top-0 backdrop-blur-3xl z-50">
       <div className="container mx-auto">
@@ -39,34 +43,30 @@ export default function Navbar() {
           <NavigationMenu className="hidden lg:block">
             <NavigationMenuList>
               <NavigationMenuItem>
-                <NavigationMenuLink
-                  href="/"
-                  
-                >
-                  Home
-                </NavigationMenuLink>
+                <NavigationMenuLink href="/">Home</NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuLink
-                  href="/signup"
-          
-                >
-                  Sign Up
-                </NavigationMenuLink>
+                <NavigationMenuLink href="/signup">Sign Up</NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuLink
-                  href="/signin"
-              
-                >
-                  Sign In
-                </NavigationMenuLink>
+                <NavigationMenuLink href="/signin">Sign In</NavigationMenuLink>
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
           <div className="hidden items-center gap-4 lg:flex">
-            <Button variant="outline">Sign in</Button>
-            <Button>Start for free</Button>
+               {status === "authenticated" ? (
+                    <Link href="/dashbord">
+                      {" "}
+                      <Button>{data?.user?.name}</Button>
+                    </Link>
+                  ) : (
+                    <>
+                      {" "}
+                      <Link href="/signin">
+                        <Button>Sign in</Button>
+                      </Link>
+                    </>
+                  )}
             <ThemeToggle></ThemeToggle>
           </div>
           <Sheet>
@@ -94,8 +94,20 @@ export default function Navbar() {
                   </Link>
                 </div>
                 <div className="mt-6 flex flex-col gap-4">
-                  <Button variant="outline">Sign in</Button>
-                  <Button>Start for free</Button>
+                  {status === "authenticated" ? (
+                    <Link href="/dashbord">
+                      {" "}
+                      <Button>{data?.user?.name}</Button>
+                    </Link>
+                  ) : (
+                    <>
+                      {" "}
+                      <Link href="/signin">
+                        <Button>Sign in</Button>
+                      </Link>
+                    </>
+                  )}
+
                   <ThemeToggle></ThemeToggle>
                 </div>
               </div>

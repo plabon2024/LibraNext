@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${lora.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="bg-primary/10">
+        <div className="bg-primary/5">
           <NextAuthProvider>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
               {children}

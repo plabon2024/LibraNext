@@ -24,7 +24,7 @@ export default function TrandingBooks() {
     fetchBooks();
   }, []);
 
-  if (loading) return <p>Loading books...</p>;
+  if (loading) return <p className="text-center w-full">Loading books...</p>;
   if (error) return <p>Error: {error}</p>;
 
   return (
@@ -52,7 +52,7 @@ export default function TrandingBooks() {
 
                 {/* Book Info */}
                 <div className="flex flex-col items-center text-center px-4 py-3 w-full">
-                  <h3 className="text-base font-semibold mb-1 line-clamp-2">
+                  <h3 className="text-base font-semibold mb-1 line-clamp-1">
                     {book.title}
                   </h3>
                   <p className="text-sm text-slate-500">{book.author}</p>
