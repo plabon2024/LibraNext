@@ -33,8 +33,18 @@ export function SignupForm() {
       const result = await res.json();
 
       if (!res.ok) throw new Error(result.error || "Failed to register");
+      // Auto-login after successful registration
+      const loginResult = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
 
-      router.push("/signin");
+      if (!loginResult?.ok) {
+        throw new Error(loginResult?.error || "Failed to login");
+      }
+      // Redirect to homepage after successful login
+      router.push("/");
     } catch (err) {
       setError(err.message);
     } finally {
@@ -90,11 +100,10 @@ export function SignupForm() {
                 {loading ? "Creating account..." : "Sign Up"}
               </Button>
             </div>
-          
           </form>
           <div className="pt-6">
-              <Button
-              onClick={() => signIn("google")}
+            <Button
+              onClick={() => signIn("google", { callbackUrl: "/" })}
               variant="outline"
               className="w-full flex"
             >
@@ -130,7 +139,6 @@ export function SignupForm() {
                 Sign In
               </Link>
             </div>
-
           </div>
         </CardContent>
       </Card>

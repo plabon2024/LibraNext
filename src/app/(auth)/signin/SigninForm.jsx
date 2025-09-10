@@ -79,7 +79,8 @@ export function SigninForm() {
           </form>{" "}
           <div className="pt-6">
             <Button
-              onClick={() => signIn("google")}
+             onClick={() => signIn("google", { callbackUrl: "/" })}
+
               variant="outline"
               className="w-full flex"
             >

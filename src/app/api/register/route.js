@@ -5,7 +5,9 @@ export async function POST(req) {
   try {
     const user = await req.json();
 
-    const existingUser = await dbConnect("users").findOne({ email: user.email });
+    const existingUser = await dbConnect("users").findOne({
+      email: user.email,
+    });
     if (existingUser) {
       return new Response(JSON.stringify({ error: "User already exists" }), {
         status: 400,
@@ -27,7 +29,6 @@ export async function POST(req) {
     };
 
     const result = await dbConnect("users").insertOne(newUser);
-
     return Response.json({ success: true, insertedId: result.insertedId });
   } catch (error) {
     console.error("Error registering user:", error);
